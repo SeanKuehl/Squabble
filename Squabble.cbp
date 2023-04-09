@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -32,8 +34,12 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="CommandOutlines.txt" />
+		<Unit filename="FunctionDecider.cpp" />
+		<Unit filename="FunctionDecider.h" />
 		<Unit filename="SquabbleMain.cpp" />
 		<Unit filename="Test.txt" />
+		<Unit filename="include/Variable.h" />
+		<Unit filename="src/Variable.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

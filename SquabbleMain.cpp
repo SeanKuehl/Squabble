@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "FunctionDecider.h"
 
 using namespace std;
 
@@ -14,13 +15,8 @@ int main(){
      vector<string> fileLines = ReadFile("Test.txt");
      vector<vector<string>> splitLines = SplitVectorStrings(fileLines);
      vector<vector<string>> combinedLines = CombineStringLiteralTokens(splitLines);
+     DecideCommand(combinedLines);
 
-     for (int i = 0; i< combinedLines.size();i++){
-        vector<string> thisList = splitLines.at(i);
-        for (int k = 0; k<thisList.size();k++){
-            cout << thisList.at(k) << endl;
-        }
-     }
 
     return 0;
 }
@@ -36,19 +32,20 @@ vector<vector<string>> CombineStringLiteralTokens(vector<vector<string>> uncombi
         for (int k = 0; k<thisList.size();k++){
             char firstChar = thisList.at(k).at(0);
             if (firstChar == '"'){
-                cout << "string start" << endl;
-                combinerString += thisList.at(k);
+
+                combinerString += thisList.at(k) + " ";
                 stringStarted = true;
             }
             else if (thisList.at(k).at(thisList.at(k).size()-1) == '"' && stringStarted == true){
-                cout << "string end" << endl;
+
                 combinerString += thisList.at(k);
+
                 thisLine.push_back(combinerString);
-                combinerString = "";
                 stringStarted = false;
             }
             else if (stringStarted == true){
-                combinerString += thisList.at(k);
+
+                combinerString += thisList.at(k) + " ";
             }
             else {
                 thisLine.push_back(thisList.at(k));
@@ -56,6 +53,7 @@ vector<vector<string>> CombineStringLiteralTokens(vector<vector<string>> uncombi
 
         }
         toReturn.push_back(thisLine);
+
 
      }
 

@@ -1,2 +1,2 @@
 declare x
-set x "15 and 16"
+sets x "15 and 16"
