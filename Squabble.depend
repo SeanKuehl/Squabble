@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1681041578 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\squabblemain.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+

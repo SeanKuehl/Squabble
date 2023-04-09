@@ -1,0 +1,9 @@
+declare x
+set x 5
+note: variables can store an int, string, char etc. value all at once
+compare x > y jmp z
+note: can only compare two vars, no hard coding
+scope z
+...
+end z
+comment this is a comment
