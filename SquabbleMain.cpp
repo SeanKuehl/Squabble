@@ -15,6 +15,7 @@ int main(){
      vector<string> fileLines = ReadFile("Test.txt");
      vector<vector<string>> splitLines = SplitVectorStrings(fileLines);
      vector<vector<string>> combinedLines = CombineStringLiteralTokens(splitLines);
+
      DecideCommand(combinedLines);
 
 

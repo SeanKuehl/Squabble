@@ -1,20 +1,21 @@
 # depslib dependency file v1.0
-1681058600 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\squabblemain.cpp
+1681079393 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\squabblemain.cpp
 	<iostream>
 	<fstream>
 	<string>
 	<vector>
 	"FunctionDecider.h"
 
-1681058439 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\src\variable.cpp
+1681061075 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\src\variable.cpp
 	"Variable.h"
 
 1681058394 c:\users\turqo\onedrive\desktop\temp\squabble\squabble\include\variable.h
 	<string>
 
-1681058475 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\functiondecider.cpp
+1681079529 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\functiondecider.cpp
 	<vector>
 	<string>
+	<iostream>
 	"Variable.h"
 
 1681058652 c:\users\turqo\onedrive\desktop\temp\squabble\squabble\functiondecider.h

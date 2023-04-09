@@ -1,5 +1,17 @@
 declare x
-set x 5
+
+seti x 5
+sets x "hello"
+setc x h
+setd x 5.0
+#set x to an int, string char or double value
+
+printi x
+prints x
+printc x
+printd x
+#print x's int, string char or double value
+
 note: variables can store an int, string, char etc. value all at once
 compare x > y jmp z
 note: can only compare two vars, no hard coding
