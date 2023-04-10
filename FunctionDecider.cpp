@@ -7,6 +7,8 @@ using namespace std;
 
 vector<Variable> userVariables;
 
+string StringToUpper(string input);
+
 
 void DeclareVariable(string variableName);
 
@@ -26,47 +28,68 @@ void DecideCommand(vector<vector<string>> lines){
         vector<string> thisLine = lines.at(i);
 
 
-            if (thisLine.at(0) == "DECLARE" || thisLine.at(0) == "declare"){
+            if (StringToUpper(thisLine.at(0)) == "DECLARE"){
                 DeclareVariable(thisLine.at(1));
             }
-            else if (thisLine.at(0) == "SETS" || thisLine.at(0) == "sets"){
+            else if (StringToUpper(thisLine.at(0)) == "SETS"){
                 SetVariableStringValue(thisLine.at(1), thisLine.at(2));
             }
-            else if (thisLine.at(0) == "SETI" || thisLine.at(0) == "seti"){
+            else if (StringToUpper(thisLine.at(0)) == "SETI"){
                     SetVariableIntegerValue(thisLine.at(1), thisLine.at(2));
 
             }
-            else if (thisLine.at(0) == "SETC" || thisLine.at(0) == "setc"){
+            else if (StringToUpper(thisLine.at(0)) == "SETC"){
 
                     SetVariableCharacterValue(thisLine.at(1), thisLine.at(2));
 
             }
-            else if (thisLine.at(0) == "SETD" || thisLine.at(0) == "setd"){
+            else if (StringToUpper(thisLine.at(0)) == "SETD"){
 
                     SetVariableDoubleValue(thisLine.at(1), thisLine.at(2));
 
             }
 
-            else if (thisLine.at(0) == "PRINTS" || thisLine.at(0) == "prints"){
+            else if (StringToUpper(thisLine.at(0)) == "PRINTS"){
                     VariablePrintString(thisLine.at(1));
 
 
             }
-            else if (thisLine.at(0) == "PRINTI" || thisLine.at(0) == "printi"){
+            else if (StringToUpper(thisLine.at(0)) == "PRINTI"){
                     VariablePrintInteger(thisLine.at(1));
 
             }
-            else if (thisLine.at(0) == "PRINTC" || thisLine.at(0) == "printc"){
+            else if (StringToUpper(thisLine.at(0)) == "PRINTC"){
                     VariablePrintCharacter(thisLine.at(1));
 
             }
-            else if (thisLine.at(0) == "PRINTD" || thisLine.at(0) == "printd"){
+            else if (StringToUpper(thisLine.at(0)) == "PRINTD"){
                     VariablePrintDouble(thisLine.at(1));
+
+            }
+
+            else if (StringToUpper(thisLine.at(0)) == "COMPARES"){
+
+            }
+            else if (StringToUpper(thisLine.at(0)) == "COMPAREI"){
+
+            }
+            else if (StringToUpper(thisLine.at(0)) == "COMPAREC"){
+
+            }
+            else if (StringToUpper(thisLine.at(0)) == "COMPARED"){
 
             }
 
 
     }
+}
+
+string StringToUpper(string input){
+    string output;
+    for (int i = 0; i<input.size();i++){
+        output += toupper(input.at(i));
+    }
+    return output;
 }
 
 void DeclareVariable(string variableName){
@@ -75,9 +98,16 @@ void DeclareVariable(string variableName){
 }
 
 void SetVariableStringValue(string variableName, string newValue){
+    string formattedNewValue = "";
+    for (int i = 0;i<newValue.size();i++){
+        if (newValue.at(i) != '"'){
+            formattedNewValue += newValue.at(i);
+        }
+    }
+
     for (int i = 0; i<userVariables.size();i++){
         if (userVariables.at(i).GetName() == variableName){
-            userVariables.at(i).SetStringValue(newValue);
+            userVariables.at(i).SetStringValue(formattedNewValue);
         }
     }
 }
