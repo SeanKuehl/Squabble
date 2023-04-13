@@ -16,7 +16,13 @@ int main(){
      vector<vector<string>> splitLines = SplitVectorStrings(fileLines);
      vector<vector<string>> combinedLines = CombineStringLiteralTokens(splitLines);
 
-     DecideCommand(combinedLines);
+     for (int i = 0; i<combinedLines.size();i++){
+        for (int k = 0; k<combinedLines.at(i).size();k++){
+            cout << combinedLines.at(i).at(k) << endl;
+        }
+     }
+
+     //DecideCommand(combinedLines);
 
 
     return 0;

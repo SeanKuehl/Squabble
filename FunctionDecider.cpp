@@ -22,10 +22,16 @@ void VariablePrintInteger(string variableName);
 void VariablePrintString(string variableName);
 void VariablePrintCharacter(string variableName);
 
+void AddStringVariables(string firstVariable, string secondVariable);
+void AddIntegerVariables(string firstVariable, string secondVariable);
+void AddCharacterVariables(string firstVariable, string secondVariable);
+void AddDoubleVariables(string firstVariable, string secondVariable);
+
 
 void DecideCommand(vector<vector<string>> lines){
     for (int i = 0; i< lines.size();i++){
         vector<string> thisLine = lines.at(i);
+        cout << thisLine.size() << endl;
 
 
             if (StringToUpper(thisLine.at(0)) == "DECLARE"){
@@ -67,22 +73,121 @@ void DecideCommand(vector<vector<string>> lines){
 
             }
 
-            else if (StringToUpper(thisLine.at(0)) == "COMPARES"){
+            else if (StringToUpper(thisLine.at(0)) == "ADDS"){
 
+                AddStringVariables(thisLine.at(1), thisLine.at(2));
             }
-            else if (StringToUpper(thisLine.at(0)) == "COMPAREI"){
-
+            else if (StringToUpper(thisLine.at(0)) == "ADDI"){
+                AddIntegerVariables(thisLine.at(1), thisLine.at(2));
             }
-            else if (StringToUpper(thisLine.at(0)) == "COMPAREC"){
-
+            else if (StringToUpper(thisLine.at(0)) == "ADDC"){
+                AddCharacterVariables(thisLine.at(1), thisLine.at(2));
             }
-            else if (StringToUpper(thisLine.at(0)) == "COMPARED"){
-
+            else if (StringToUpper(thisLine.at(0)) == "ADDD"){
+                AddDoubleVariables(thisLine.at(1), thisLine.at(2));
             }
 
 
     }
 }
+
+
+void AddStringVariables(string firstVariable, string secondVariable){
+    string resultingString = "";
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == firstVariable){
+            resultingString += userVariables.at(i).GetStringValue();
+        }
+    }
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == secondVariable){
+            resultingString += userVariables.at(i).GetStringValue();
+        }
+    }
+
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == firstVariable){
+            userVariables.at(i).SetStringValue(resultingString);
+        }
+    }
+
+}
+
+void AddIntegerVariables(string firstVariable, string secondVariable){
+    int resultingInt = 0;
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == firstVariable){
+            resultingInt += userVariables.at(i).GetIntValue();
+        }
+    }
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == secondVariable){
+            resultingInt += userVariables.at(i).GetIntValue();
+        }
+    }
+
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == firstVariable){
+            userVariables.at(i).SetIntValue(resultingInt);
+        }
+    }
+
+}
+
+void AddCharacterVariables(string firstVariable, string secondVariable){
+    int resultingHelper;
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == firstVariable){
+             resultingHelper = (int)(userVariables.at(i).GetCharValue());
+        }
+    }
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == secondVariable){
+            resultingHelper += (int)(userVariables.at(i).GetCharValue());
+        }
+    }
+
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == firstVariable){
+            userVariables.at(i).SetCharValue((char)resultingHelper);
+        }
+    }
+
+}
+
+void AddDoubleVariables(string firstVariable, string secondVariable){
+    double resultingDouble = 0.0;
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == firstVariable){
+             resultingDouble += userVariables.at(i).GetDoubleValue();
+        }
+    }
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == secondVariable){
+            resultingDouble += userVariables.at(i).GetDoubleValue();
+        }
+    }
+
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == firstVariable){
+            userVariables.at(i).SetDoubleValue(resultingDouble);
+        }
+    }
+
+}
+
 
 string StringToUpper(string input){
     string output;

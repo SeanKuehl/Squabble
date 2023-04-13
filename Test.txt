@@ -1,3 +1,6 @@
 declare x
-sets x "15 and 16"
+declare y
+sets x "15, l"
+sets y "16"
+adds x y
 prints x
