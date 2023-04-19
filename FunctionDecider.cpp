@@ -31,7 +31,7 @@ void AddDoubleVariables(string firstVariable, string secondVariable);
 void DecideCommand(vector<vector<string>> lines){
     for (int i = 0; i< lines.size();i++){
         vector<string> thisLine = lines.at(i);
-        cout << thisLine.size() << endl;
+
 
 
             if (StringToUpper(thisLine.at(0)) == "DECLARE"){

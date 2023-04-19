@@ -14,15 +14,17 @@ int main(){
 
      vector<string> fileLines = ReadFile("Test.txt");
      vector<vector<string>> splitLines = SplitVectorStrings(fileLines);
-     vector<vector<string>> combinedLines = CombineStringLiteralTokens(splitLines);
 
-     for (int i = 0; i<combinedLines.size();i++){
-        for (int k = 0; k<combinedLines.at(i).size();k++){
-            cout << combinedLines.at(i).at(k) << endl;
-        }
-     }
 
-     //DecideCommand(combinedLines);
+
+
+     //vector<vector<string>> combinedLines = CombineStringLiteralTokens(splitLines);
+
+
+
+
+
+     DecideCommand(splitLines);
 
 
     return 0;
@@ -94,7 +96,7 @@ vector<string> ReadFile(string fileName){
 vector<vector<string>> SplitVectorStrings(vector<string> toSplit){
 
     vector<vector<string>> splitLines;
-    string delimiter = " ";
+    string delimiter = "-";
 
     for (int i = 0; i < toSplit.size();i++){
         string s = toSplit.at(i);

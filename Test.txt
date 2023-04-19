@@ -1,6 +1,6 @@
-declare x
-declare y
-sets x "15, l"
-sets y "16"
-adds x y
-prints x
+declare-x
+declare-y
+sets-x-"15, "
+sets-y-"16 l"
+adds-x-y
+prints-x
