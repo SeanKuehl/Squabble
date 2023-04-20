@@ -1,16 +1,22 @@
-declare x
+declare-x
 
-seti x 5
-sets x "hello"
-setc x h
-setd x 5.0
+seti-x-5
+sets-x-"hello"
+setc-x-h
+setd-x-5.0
 #set x to an int, string char or double value
 
-printi x
-prints x
-printc x
-printd x
+printi-x
+prints-x
+printc-x
+printd-x
 #print x's int, string char or double value
+
+subi-x-y
+subs-x-y
+subc-x-y
+subd-x-y
+
 
 note: variables can store an int, string, char etc. value all at once
 compare x > y jmp z
