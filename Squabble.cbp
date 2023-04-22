@@ -38,7 +38,9 @@
 		<Unit filename="FunctionDecider.h" />
 		<Unit filename="SquabbleMain.cpp" />
 		<Unit filename="Test.txt" />
+		<Unit filename="include/Scope.h" />
 		<Unit filename="include/Variable.h" />
+		<Unit filename="src/Scope.cpp" />
 		<Unit filename="src/Variable.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

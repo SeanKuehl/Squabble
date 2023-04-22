@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string.h>
 #include "Variable.h"
+#include "Scope.h"
 
 using namespace std;
 
@@ -32,6 +33,8 @@ void SubtractStringVariables(string firstVariable, string secondVariable);
 void SubtractIntegerVariables(string firstVariable, string secondVariable);
 void SubtractCharacterVariables(string firstVariable, string secondVariable);
 void SubtractDoubleVariables(string firstVariable, string secondVariable);
+
+void StartScope(string nameOfScope, vector<string> scopeVariables, vector<vector<string>> scopeCommands);
 
 
 void DecideCommand(vector<vector<string>> lines){
@@ -104,9 +107,57 @@ void DecideCommand(vector<vector<string>> lines){
             else if (StringToUpper(thisLine.at(0)) == "SUBD"){
                 SubtractDoubleVariables(thisLine.at(1), thisLine.at(2));
             }
+            else if (StringToUpper(thisLine.at(0)) == "STARTSCOPE"){
+                string nameOfScope = thisLine.at(1);
+                vector<string> scopeVars;
+
+                for (int k = 2;k<thisLine.size();k++){
+                    scopeVars.push_back(thisLine.at(k));
+                }
+
+                vector<vector<string>> scopeCommands;
+
+                for (int k = i+1;k<lines.size();k++){
+                    vector<string> scopeLine = lines.at(k);
+
+                    if (StringToUpper(scopeLine.at(0)) == "ENDSCOPE"){
+                        if (scopeLine.at(1) == nameOfScope){
+                            i=k;    //resume normal reading of commands from line after endscope command
+                        }
+                        else {
+                            scopeCommands.push_back(scopeLine);
+                        }
+                    }
+                    else {
+                        scopeCommands.push_back(scopeLine);
+                    }
+
+                }
+
+                StartScope(nameOfScope, scopeVars, scopeCommands);
+
+            }
 
 
     }
+}
+
+void StartScope(string nameOfScope, vector<string> scopeVariables, vector<vector<string>> scopeCommands){
+    //for scopeVariables, set scope vars for all values(if there are any scope vars, which there might not be)
+    cout << nameOfScope << endl;
+
+    for (int i = 0; i<scopeVariables.size();i++){
+        cout << scopeVariables.at(i) << endl;
+    }
+
+    for (int i = 0; i<scopeCommands.size();i++){
+        vector<string> temp = scopeCommands.at(i);
+        for (int k = 0; k<temp.size();k++){
+            cout << temp.at(k) << endl;
+        }
+        cout << "" << endl;
+    }
+
 }
 
 void SubtractStringVariables(string firstVariable, string secondVariable){

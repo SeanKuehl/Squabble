@@ -12,14 +12,22 @@
 1681058394 c:\users\turqo\onedrive\desktop\temp\squabble\squabble\include\variable.h
 	<string>
 
-1682017782 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\functiondecider.cpp
+1682203638 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\functiondecider.cpp
 	<vector>
 	<string>
 	<iostream>
 	<string.h>
 	"Variable.h"
+	"Scope.h"
 
 1681058652 c:\users\turqo\onedrive\desktop\temp\squabble\squabble\functiondecider.h
+	<vector>
+	<string>
+
+1682203591 source:c:\users\turqo\onedrive\desktop\temp\squabble\squabble\src\scope.cpp
+	"Scope.h"
+
+1682203614 c:\users\turqo\onedrive\desktop\temp\squabble\squabble\include\scope.h
 	<vector>
 	<string>
 

@@ -1,6 +1,8 @@
 declare-x
 declare-y
+startscope-hello-y-x
 sets-x-"15, xx"
 sets-y-"16"
 subs-x-y
 prints-x
+endscope-hello
