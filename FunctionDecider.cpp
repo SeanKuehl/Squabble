@@ -36,9 +36,11 @@ void SubtractCharacterVariables(string firstVariable, string secondVariable);
 void SubtractDoubleVariables(string firstVariable, string secondVariable);
 
 void StartScope(string nameOfScope, vector<string> scopeVariables, vector<vector<string>> scopeCommands);
+void UseScope(string nameOfScope, vector<string> vars);
 
 
 void DecideCommand(vector<vector<string>> lines){
+
     for (int i = 0; i< lines.size();i++){
         vector<string> thisLine = lines.at(i);
 
@@ -110,6 +112,7 @@ void DecideCommand(vector<vector<string>> lines){
             }
             else if (StringToUpper(thisLine.at(0)) == "STARTSCOPE"){
                 string nameOfScope = thisLine.at(1);
+
                 vector<string> scopeVars;
 
                 for (int k = 2;k<thisLine.size();k++){
@@ -122,14 +125,19 @@ void DecideCommand(vector<vector<string>> lines){
                     vector<string> scopeLine = lines.at(k);
 
                     if (StringToUpper(scopeLine.at(0)) == "ENDSCOPE"){
+
                         if (scopeLine.at(1) == nameOfScope){
+
                             i=k;    //resume normal reading of commands from line after endscope command
+                            break;
                         }
                         else {
+
                             scopeCommands.push_back(scopeLine);
                         }
                     }
                     else {
+
                         scopeCommands.push_back(scopeLine);
                     }
 
@@ -145,6 +153,8 @@ void DecideCommand(vector<vector<string>> lines){
                 for (int k = 2; k<thisLine.size();k++){
                     varsForScope.push_back(thisLine.at(k));
                 }
+
+                UseScope(scopeToUse, varsForScope);
 
             }
 
@@ -175,7 +185,7 @@ void UseScope(string nameOfScope, vector<string> vars){
                 //if variable exists, set it. If it doesn't exist, create and set it
                 if (FindVarIndex(userScopes.at(i).GetScopeVariables().at(k)) >= 0){
                     //it exists, set it
-                    int varToSet = FindVarIndex(userScopes.at(i).GetScopeVariables().at(k).GetName());
+                    int varToSet = FindVarIndex(userScopes.at(i).GetScopeVariables().at(k));
                     int setter = FindVarIndex(vars.at(k));
 
                     userVariables.at(varToSet).SetStringValue(userVariables.at(setter).GetStringValue());
@@ -188,7 +198,7 @@ void UseScope(string nameOfScope, vector<string> vars){
                 }
                 else {
                     //create it
-                    Variable newVar = Variable(userScopes.at(i).GetScopeVariables().at(k).GetName());
+                    Variable newVar = Variable(userScopes.at(i).GetScopeVariables().at(k));
                     int varToSetIndex = FindVarIndex(vars.at(k));
                     newVar.SetStringValue(userVariables.at(varToSetIndex).GetStringValue());
                     newVar.SetIntValue(userVariables.at(varToSetIndex).GetIntValue());
@@ -197,8 +207,7 @@ void UseScope(string nameOfScope, vector<string> vars){
                 }
             }
 
-            //now that vars are set, add scope commands to command list, this may break things since there is currently
-            //no instruction pointer through the list
+            DecideCommand(userScopes.at(i).GetScopeCommands()); //run the commands within the scope
 
 
         }
@@ -211,7 +220,7 @@ void StartScope(string nameOfScope, vector<string> scopeVariables, vector<vector
     //for scopeVariables, set scope vars for all values(if there are any scope vars, which there might not be)
     //this will be done in the command that activates this cached scope
 
-    Scope newScope = Scope(nameOfScope, initialVariables, scopeCommands);
+    Scope newScope = Scope(nameOfScope, scopeVariables, scopeCommands);
     userScopes.push_back(newScope);
 
 

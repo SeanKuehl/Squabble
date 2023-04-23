@@ -16,6 +16,8 @@ class Scope
         void SetScopeName(string newName);
         vector<vector<string>> GetScopeCommands();
 
+
+
         vector<string> GetScopeVariables();
         void SetScopeVariables(vector<string> newVars);
 
