@@ -8,6 +8,7 @@
 using namespace std;
 
 vector<Variable> userVariables;
+vector<Scope> userScopes;
 
 string StringToUpper(string input);
 
@@ -137,26 +138,82 @@ void DecideCommand(vector<vector<string>> lines){
                 StartScope(nameOfScope, scopeVars, scopeCommands);
 
             }
+            else if (StringToUpper(thisLine.at(0)) == "USESCOPE"){
+                string scopeToUse = thisLine.at(1);
+                vector<string> varsForScope;
+
+                for (int k = 2; k<thisLine.size();k++){
+                    varsForScope.push_back(thisLine.at(k));
+                }
+
+            }
 
 
     }
 }
 
+//helper function
+int FindVarIndex(string varName){
+
+    for (int i = 0; i<userVariables.size();i++){
+        if (userVariables.at(i).GetName() == varName){
+            return i;
+        }
+    }
+
+    return -1;
+
+}
+
+
+void UseScope(string nameOfScope, vector<string> vars){
+
+    for (int i = 0; i<userScopes.size();i++){
+        if (userScopes.at(i).GetScopeName() == nameOfScope){
+
+            for (int k = 0; k<userScopes.at(i).GetScopeVariables().size();k++){
+                //if variable exists, set it. If it doesn't exist, create and set it
+                if (FindVarIndex(userScopes.at(i).GetScopeVariables().at(k)) >= 0){
+                    //it exists, set it
+                    int varToSet = FindVarIndex(userScopes.at(i).GetScopeVariables().at(k).GetName());
+                    int setter = FindVarIndex(vars.at(k));
+
+                    userVariables.at(varToSet).SetStringValue(userVariables.at(setter).GetStringValue());
+                    userVariables.at(varToSet).SetIntValue(userVariables.at(setter).GetIntValue());
+                    userVariables.at(varToSet).SetCharValue(userVariables.at(setter).GetCharValue());
+                    userVariables.at(varToSet).SetDoubleValue(userVariables.at(setter).GetDoubleValue());
+
+
+
+                }
+                else {
+                    //create it
+                    Variable newVar = Variable(userScopes.at(i).GetScopeVariables().at(k).GetName());
+                    int varToSetIndex = FindVarIndex(vars.at(k));
+                    newVar.SetStringValue(userVariables.at(varToSetIndex).GetStringValue());
+                    newVar.SetIntValue(userVariables.at(varToSetIndex).GetIntValue());
+                    newVar.SetCharValue(userVariables.at(varToSetIndex).GetCharValue());
+                    newVar.SetDoubleValue(userVariables.at(varToSetIndex).GetDoubleValue());
+                }
+            }
+
+            //now that vars are set, add scope commands to command list, this may break things since there is currently
+            //no instruction pointer through the list
+
+
+        }
+    }
+
+}
+
+
 void StartScope(string nameOfScope, vector<string> scopeVariables, vector<vector<string>> scopeCommands){
     //for scopeVariables, set scope vars for all values(if there are any scope vars, which there might not be)
-    cout << nameOfScope << endl;
+    //this will be done in the command that activates this cached scope
 
-    for (int i = 0; i<scopeVariables.size();i++){
-        cout << scopeVariables.at(i) << endl;
-    }
+    Scope newScope = Scope(nameOfScope, initialVariables, scopeCommands);
+    userScopes.push_back(newScope);
 
-    for (int i = 0; i<scopeCommands.size();i++){
-        vector<string> temp = scopeCommands.at(i);
-        for (int k = 0; k<temp.size();k++){
-            cout << temp.at(k) << endl;
-        }
-        cout << "" << endl;
-    }
 
 }
 
